@@ -14,26 +14,30 @@ import java.util.UUID;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final ValidateDuplicateUserBean validateDuplicateUserBean;
+    private final SaveUserBean saveUserBean;
+    private final LoginBean loginBean;
 
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, ValidateDuplicateUserBean validateDuplicateUserBean,
+                       SaveUserBean saveUserBean, LoginBean loginBean){
         this.userRepository = userRepository;
+        this.validateDuplicateUserBean = validateDuplicateUserBean;
+        this.saveUserBean = saveUserBean;
+        this.loginBean = loginBean;
     }
 
     //중복검사
     public boolean validateDuplicateUser(String name){
-        ValidateDuplicateUserBean validateDuplicateUserBean = new ValidateDuplicateUserBean(userRepository);
         return validateDuplicateUserBean.exec(name);
     }
 
     //회원가입
     public boolean saveUser(String name, String password){
-        SaveUserBean saveUserBean = new SaveUserBean(userRepository);
         return saveUserBean.exec(name, password);
     }
 
     //로그인
     public SaveUserResponseDTO login(String name, String password){
-        LoginBean loginBean = new LoginBean(userRepository);
         return loginBean.exec(name, password);
     }
 
