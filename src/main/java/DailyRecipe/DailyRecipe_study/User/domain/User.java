@@ -16,6 +16,10 @@ public class User {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @ColumnDefault("random_uuid()")
     @Column(name = "id", updatable = false, nullable = false)
+    /**
+     * 이렇게 어노테이션 처리로도 UUID 설정이 가능하다.
+     * 하지만 스프링 코드 내에서 직접 UUID를 생성하고 직접 로그를 확인 할 수 있
+     */
     private UUID id;
     private String name;
     private String password;
