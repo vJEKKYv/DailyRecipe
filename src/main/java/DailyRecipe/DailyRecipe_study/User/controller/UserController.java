@@ -6,20 +6,18 @@ import DailyRecipe.DailyRecipe_study.User.domain.dto.SaveUserResponseDTO;
 import DailyRecipe.DailyRecipe_study.User.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-//Beab 싱글톤 지키게 하기
-//cors 지키게 하기
+//Bean 싱글톤 지키게 하기
 //DTO를 각각에 다 맞게 만드는 것이 좋을 수도? 모듈화에 더 유리하다. 되도록 별도롤 만들 것. (만약 쓸거라면 TotalUser~~DTO 이런 식으로 쓸 것. )
 //함수에 정보를 넘겨줄 땐 객체로 넘겨주는 것이 바람직하다. 정보 은닉.
 //할거면 하나로 확실히 지키면서 가기. 왔다갔다 하면 헷갈림. 전체적 통일성 필요
 @RestController
+@RequestMapping(value = "/auth")
+@CrossOrigin
 public class UserController {
     private final UserService userService;
 
@@ -27,7 +25,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/auth/test")
+    @GetMapping(value = "/test")
     public ResponseEntity<Map<String, Object>> test(){
         Map<String,Object> requestMap = new HashMap<>();
         requestMap.put("is_success", true);
@@ -35,7 +33,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
-    @PostMapping(value = "/auth/duplicate")
+    @PostMapping(value = "/duplicate")
     public ResponseEntity<Map<String, Object>> duplicate(@RequestBody SaveUserRequestDTO saveUserRequestDTO){
         boolean check = userService.validateDuplicateUser(saveUserRequestDTO.getName());
         Map<String, Object> requestMap = new HashMap<>();
@@ -45,7 +43,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
-    @PostMapping(value = "/auth/signup")
+    @PostMapping(value = "/signup")
     public ResponseEntity<Map<String, Object>> signup(@RequestBody SaveUserRequestDTO saveUserRequestDTO){
         boolean check = userService.saveUser(saveUserRequestDTO.getName(), saveUserRequestDTO.getPassword());
         Map<String, Object> requestMap = new HashMap<>();
@@ -55,7 +53,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
-    @PostMapping(value = "/auth/login")
+    @PostMapping(value = "/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody SaveUserRequestDTO saveUserRequestDTO){
         SaveUserResponseDTO saveUserResponseDTO = userService.login(saveUserRequestDTO.getName(), saveUserRequestDTO.getPassword());
         Map<String, Object> requestMap = new HashMap<>();
@@ -66,7 +64,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
-    @PostMapping(value = "/auth/logout")
+    @PostMapping(value = "/logout")
     public ResponseEntity<Map<String, Object>> logout() {
         Map<String, Object> requestMap = new HashMap<>();
         boolean check = userService.logout();
