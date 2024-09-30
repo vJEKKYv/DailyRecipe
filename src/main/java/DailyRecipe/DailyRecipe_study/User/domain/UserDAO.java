@@ -10,7 +10,7 @@ import java.util.*;
 
 @Entity
 @Getter
-public class User {
+public class UserDAO {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")

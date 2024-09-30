@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-//Bean 싱글톤 지키게 하기
-//DTO를 각각에 다 맞게 만드는 것이 좋을 수도? 모듈화에 더 유리하다. 되도록 별도롤 만들 것. (만약 쓸거라면 TotalUser~~DTO 이런 식으로 쓸 것. )
-//함수에 정보를 넘겨줄 땐 객체로 넘겨주는 것이 바람직하다. 정보 은닉.
 //할거면 하나로 확실히 지키면서 가기. 왔다갔다 하면 헷갈림. 전체적 통일성 필요
 @RestController
 @RequestMapping(value = "/auth")

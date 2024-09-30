@@ -1,6 +1,6 @@
 package DailyRecipe.DailyRecipe_study.User.bean;
 
-import DailyRecipe.DailyRecipe_study.User.domain.User;
+import DailyRecipe.DailyRecipe_study.User.domain.UserDAO;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.LoginUserDTO;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.TotalUserResponseDTO;
 import DailyRecipe.DailyRecipe_study.User.repository.UserRepository;
@@ -21,13 +21,13 @@ public class LoginBean {
          비밀번호가 틀리면 아이디만 넣어서 반환 X
          일단 비밀번호 틀린 것도 null 반환 하게 함
          **/
-        User user = userRepository.findByName(loginUserDTO.getName());
+        UserDAO userDAO = userRepository.findByName(loginUserDTO.getName());
         TotalUserResponseDTO totalUserResponseDTO = new TotalUserResponseDTO();
-        if (user == null)   return null;
+        if (userDAO == null)   return null;
 
-        else if (user.getPassword().equals(loginUserDTO.getPassword())){
-            totalUserResponseDTO.setId(user.getId());
-            totalUserResponseDTO.setName(user.getName());
+        else if (userDAO.getPassword().equals(loginUserDTO.getPassword())){
+            totalUserResponseDTO.setId(userDAO.getId());
+            totalUserResponseDTO.setName(userDAO.getName());
             return totalUserResponseDTO;
         }
         else{
