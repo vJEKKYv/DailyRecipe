@@ -1,8 +1,9 @@
 package DailyRecipe.DailyRecipe_study.User.controller;
 
-import DailyRecipe.DailyRecipe_study.User.domain.User;
+import DailyRecipe.DailyRecipe_study.User.domain.dto.DuplicateUserRequestDTO;
+import DailyRecipe.DailyRecipe_study.User.domain.dto.LoginUserDTO;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.SaveUserRequestDTO;
-import DailyRecipe.DailyRecipe_study.User.domain.dto.SaveUserResponseDTO;
+import DailyRecipe.DailyRecipe_study.User.domain.dto.TotalUserResponseDTO;
 import DailyRecipe.DailyRecipe_study.User.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,13 +30,13 @@ public class UserController {
     public ResponseEntity<Map<String, Object>> test(){
         Map<String,Object> requestMap = new HashMap<>();
         requestMap.put("is_success", true);
-        requestMap.put("message", "테스트 접근 성공");
+        requestMap.put("message", "테스트 성공");
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
     @PostMapping(value = "/duplicate")
-    public ResponseEntity<Map<String, Object>> duplicate(@RequestBody SaveUserRequestDTO saveUserRequestDTO){
-        boolean check = userService.validateDuplicateUser(saveUserRequestDTO.getName());
+    public ResponseEntity<Map<String, Object>> duplicate(@RequestBody DuplicateUserRequestDTO duplicateUserRequestDTO){
+        boolean check = userService.validateDuplicateUser(duplicateUserRequestDTO);
         Map<String, Object> requestMap = new HashMap<>();
 
         requestMap.put("is_success", check);
@@ -45,7 +46,7 @@ public class UserController {
 
     @PostMapping(value = "/signup")
     public ResponseEntity<Map<String, Object>> signup(@RequestBody SaveUserRequestDTO saveUserRequestDTO){
-        boolean check = userService.saveUser(saveUserRequestDTO.getName(), saveUserRequestDTO.getPassword());
+        boolean check = userService.saveUser(saveUserRequestDTO);
         Map<String, Object> requestMap = new HashMap<>();
 
         requestMap.put("is_success", check);
@@ -54,13 +55,13 @@ public class UserController {
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<Map<String, Object>> login(@RequestBody SaveUserRequestDTO saveUserRequestDTO){
-        SaveUserResponseDTO saveUserResponseDTO = userService.login(saveUserRequestDTO.getName(), saveUserRequestDTO.getPassword());
+    public ResponseEntity<Map<String, Object>> login(@RequestBody LoginUserDTO loginUserDTO){
+        TotalUserResponseDTO totalUserResponseDTO = userService.login(loginUserDTO);
         Map<String, Object> requestMap = new HashMap<>();
 
-        requestMap.put("is_success", saveUserResponseDTO != null);
-        requestMap.put("message", saveUserResponseDTO != null ? "로그인에 성공했습니다. " : "아이디 혹은 비밀번호가 다릅니다. ");
-        requestMap.put("user_id", saveUserResponseDTO !=null ? saveUserRequestDTO.getId() : null);
+        requestMap.put("is_success", totalUserResponseDTO != null);
+        requestMap.put("message", totalUserResponseDTO != null ? "로그인에 성공했습니다. " : "아이디 혹은 비밀번호가 다릅니다. ");
+        requestMap.put("user_id", totalUserResponseDTO !=null ? totalUserResponseDTO.getId() : null);
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 

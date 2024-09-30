@@ -1,6 +1,7 @@
 package DailyRecipe.DailyRecipe_study.User.bean;
 
 import DailyRecipe.DailyRecipe_study.User.domain.User;
+import DailyRecipe.DailyRecipe_study.User.domain.dto.SaveUserRequestDTO;
 import DailyRecipe.DailyRecipe_study.User.repository.UserRepository;
 import org.hibernate.annotations.Comment;
 import org.springframework.stereotype.Component;
@@ -12,12 +13,12 @@ public class SaveUserBean {
     public SaveUserBean(UserRepository userRepository){
         this.userRepository = userRepository;
     }
-    public boolean exec(String name, String password){
-        User user = userRepository.findByName(name);
+    public boolean exec(SaveUserRequestDTO saveUserRequestDTO){
+        User user = userRepository.findByName(saveUserRequestDTO.getName());
         if (user==null){
             user = new User();
-            user.setName(name);
-            user.setPassword(password);
+            user.setName(saveUserRequestDTO.getName());
+            user.setPassword(saveUserRequestDTO.getPassword());
             userRepository.save(user);
             return true;
         }

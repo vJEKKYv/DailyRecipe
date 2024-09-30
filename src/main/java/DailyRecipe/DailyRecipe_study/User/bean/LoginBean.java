@@ -1,7 +1,8 @@
 package DailyRecipe.DailyRecipe_study.User.bean;
 
 import DailyRecipe.DailyRecipe_study.User.domain.User;
-import DailyRecipe.DailyRecipe_study.User.domain.dto.SaveUserResponseDTO;
+import DailyRecipe.DailyRecipe_study.User.domain.dto.LoginUserDTO;
+import DailyRecipe.DailyRecipe_study.User.domain.dto.TotalUserResponseDTO;
 import DailyRecipe.DailyRecipe_study.User.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ public class LoginBean {
     public LoginBean(UserRepository userRepository){
         this.userRepository = userRepository;
     }
-    public SaveUserResponseDTO exec(String name, String password){
+    public TotalUserResponseDTO exec(LoginUserDTO loginUserDTO){
         /**
          유저 정보를 레포지토리에서 이름으로 가져온다.
          정보가 없으면 이름이 틀렸다. 그냥 null로 반환
@@ -20,14 +21,14 @@ public class LoginBean {
          비밀번호가 틀리면 아이디만 넣어서 반환 X
          일단 비밀번호 틀린 것도 null 반환 하게 함
          **/
-        User user = userRepository.findByName(name);
-        SaveUserResponseDTO saveUserResponseDTO = new SaveUserResponseDTO();
+        User user = userRepository.findByName(loginUserDTO.getName());
+        TotalUserResponseDTO totalUserResponseDTO = new TotalUserResponseDTO();
         if (user == null)   return null;
 
-        else if (user.getPassword().equals(password)){
-            saveUserResponseDTO.setId(user.getId());
-            saveUserResponseDTO.setName(user.getName());
-            return saveUserResponseDTO;
+        else if (user.getPassword().equals(loginUserDTO.getPassword())){
+            totalUserResponseDTO.setId(user.getId());
+            totalUserResponseDTO.setName(user.getName());
+            return totalUserResponseDTO;
         }
         else{
             /**
@@ -37,4 +38,5 @@ public class LoginBean {
             return null;
         }
     }
+
 }

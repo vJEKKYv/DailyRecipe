@@ -1,14 +1,11 @@
 package DailyRecipe.DailyRecipe_study.User.domain.dto;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Data
-public class SaveUserResponseDTO {
+public class TotalUserResponseDTO {
     private UUID id;
     private String name;
 }

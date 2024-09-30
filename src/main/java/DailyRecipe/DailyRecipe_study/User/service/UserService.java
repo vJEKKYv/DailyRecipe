@@ -3,13 +3,12 @@ package DailyRecipe.DailyRecipe_study.User.service;
 import DailyRecipe.DailyRecipe_study.User.bean.LoginBean;
 import DailyRecipe.DailyRecipe_study.User.bean.SaveUserBean;
 import DailyRecipe.DailyRecipe_study.User.bean.ValidateDuplicateUserBean;
-import DailyRecipe.DailyRecipe_study.User.domain.User;
+import DailyRecipe.DailyRecipe_study.User.domain.dto.DuplicateUserRequestDTO;
+import DailyRecipe.DailyRecipe_study.User.domain.dto.LoginUserDTO;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.SaveUserRequestDTO;
-import DailyRecipe.DailyRecipe_study.User.domain.dto.SaveUserResponseDTO;
+import DailyRecipe.DailyRecipe_study.User.domain.dto.TotalUserResponseDTO;
 import DailyRecipe.DailyRecipe_study.User.repository.UserRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class UserService {
@@ -27,18 +26,18 @@ public class UserService {
     }
 
     //중복검사
-    public boolean validateDuplicateUser(String name){
-        return validateDuplicateUserBean.exec(name);
+    public boolean validateDuplicateUser(DuplicateUserRequestDTO duplicateUserRequestDTO){
+        return validateDuplicateUserBean.exec(duplicateUserRequestDTO);
     }
 
     //회원가입
-    public boolean saveUser(String name, String password){
-        return saveUserBean.exec(name, password);
+    public boolean saveUser(SaveUserRequestDTO saveUserRequestDTO){
+        return saveUserBean.exec(saveUserRequestDTO);
     }
 
     //로그인
-    public SaveUserResponseDTO login(String name, String password){
-        return loginBean.exec(name, password);
+    public TotalUserResponseDTO login(LoginUserDTO loginUserDTO){
+        return loginBean.exec(loginUserDTO);
     }
 
     //로그아웃
