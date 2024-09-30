@@ -8,5 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface UserDAORepository extends JpaRepository<UserDAO, UUID> {
-    public UserDAO findByName(String name);
+    public UserDAO findByUserName(String userName);
+    public UserDAO findByUserNameAndPassword(String userName, String password);
 }

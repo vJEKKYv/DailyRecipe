@@ -5,7 +5,7 @@ import DailyRecipe.DailyRecipe_study.User.bean.SaveUserBean;
 import DailyRecipe.DailyRecipe_study.User.bean.ValidateDuplicateUserBean;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.DuplicateUserRequestDTO;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.LoginUserDTO;
-import DailyRecipe.DailyRecipe_study.User.domain.dto.SaveUserRequestDTO;
+import DailyRecipe.DailyRecipe_study.User.domain.dto.SignupUserRequestDTO;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.TotalUserResponseDTO;
 import DailyRecipe.DailyRecipe_study.User.repository.UserDAORepository;
 import org.springframework.stereotype.Service;
@@ -31,8 +31,8 @@ public class UserService {
     }
 
     //회원가입
-    public boolean saveUser(SaveUserRequestDTO saveUserRequestDTO){
-        return saveUserBean.exec(saveUserRequestDTO);
+    public boolean saveUser(SignupUserRequestDTO signupUserRequestDTO){
+        return saveUserBean.exec(signupUserRequestDTO);
     }
 
     //로그인

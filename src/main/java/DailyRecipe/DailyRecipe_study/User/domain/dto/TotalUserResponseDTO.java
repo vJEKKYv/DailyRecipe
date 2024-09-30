@@ -7,5 +7,5 @@ import java.util.UUID;
 @Data
 public class TotalUserResponseDTO {
     private UUID id;
-    private String name;
+    private String userName;
 }

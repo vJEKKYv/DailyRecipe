@@ -1,12 +1,9 @@
 package DailyRecipe.DailyRecipe_study.User.domain.dto;
 
 import lombok.Data;
-import lombok.Getter;
-
-import java.util.UUID;
 
 @Data
-public class SaveUserRequestDTO {
-    private String name;
+public class SignupUserRequestDTO {
+    private String userName;
     private String password;
 }

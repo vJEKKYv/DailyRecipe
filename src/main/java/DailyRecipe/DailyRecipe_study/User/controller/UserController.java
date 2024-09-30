@@ -2,7 +2,7 @@ package DailyRecipe.DailyRecipe_study.User.controller;
 
 import DailyRecipe.DailyRecipe_study.User.domain.dto.DuplicateUserRequestDTO;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.LoginUserDTO;
-import DailyRecipe.DailyRecipe_study.User.domain.dto.SaveUserRequestDTO;
+import DailyRecipe.DailyRecipe_study.User.domain.dto.SignupUserRequestDTO;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.TotalUserResponseDTO;
 import DailyRecipe.DailyRecipe_study.User.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -42,8 +42,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/signup")
-    public ResponseEntity<Map<String, Object>> signup(@RequestBody SaveUserRequestDTO saveUserRequestDTO){
-        boolean check = userService.saveUser(saveUserRequestDTO);
+    public ResponseEntity<Map<String, Object>> signup(@RequestBody SignupUserRequestDTO signupUserRequestDTO){
+        boolean check = userService.saveUser(signupUserRequestDTO);
         Map<String, Object> requestMap = new HashMap<>();
 
         requestMap.put("is_success", check);
