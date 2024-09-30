@@ -7,19 +7,19 @@ import DailyRecipe.DailyRecipe_study.User.domain.dto.DuplicateUserRequestDTO;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.LoginUserDTO;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.SaveUserRequestDTO;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.TotalUserResponseDTO;
-import DailyRecipe.DailyRecipe_study.User.repository.UserRepository;
+import DailyRecipe.DailyRecipe_study.User.repository.UserDAORepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-    private final UserRepository userRepository;
+    private final UserDAORepository userDAORepository;
     private final ValidateDuplicateUserBean validateDuplicateUserBean;
     private final SaveUserBean saveUserBean;
     private final LoginBean loginBean;
 
-    public UserService(UserRepository userRepository, ValidateDuplicateUserBean validateDuplicateUserBean,
+    public UserService(UserDAORepository userDAORepository, ValidateDuplicateUserBean validateDuplicateUserBean,
                        SaveUserBean saveUserBean, LoginBean loginBean){
-        this.userRepository = userRepository;
+        this.userDAORepository = userDAORepository;
         this.validateDuplicateUserBean = validateDuplicateUserBean;
         this.saveUserBean = saveUserBean;
         this.loginBean = loginBean;
