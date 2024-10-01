@@ -24,10 +24,9 @@ public class UserDAO {
      * 이렇게 어노테이션 처리로도 UUID 설정이 가능하다.
      * 하지만 스프링 코드 내에서 직접 UUID를 생성하고 직접 로그를 확인 할 수 있게 해 두는 것이 후에 체크 하기 편하다.
      */
+
     @Id
     private UUID id;
     private String userName;
     private String password;
-    public void setUserName(String userName){this.userName = userName;}
-    public void setPassword(String password){this.password = password;}
 }
