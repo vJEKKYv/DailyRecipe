@@ -1,4 +1,4 @@
-package DailyRecipe.DailyRecipe_study.Recipe.Repository;
+package DailyRecipe.DailyRecipe_study.Recipe.repository;
 
 import DailyRecipe.DailyRecipe_study.User.domain.UserDAO;
 import org.springframework.data.jpa.repository.JpaRepository;
