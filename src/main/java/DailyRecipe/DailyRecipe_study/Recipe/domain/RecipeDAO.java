@@ -1,6 +1,7 @@
 package DailyRecipe.DailyRecipe_study.Recipe.domain;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
@@ -18,12 +19,13 @@ import java.util.UUID;
 @Entity
 public class RecipeDAO {
     @Id
+    @Column(updatable = false, nullable = false)
     private UUID recipeId;
     private UUID userId;
     private String thumbnail;
     private String title;
     private String description;
-    private Map<String, String> ingredient;
-    private Map<String, String> instruction;
+    private String ingredient;
+    private String instruction;
     private Date createdAt;
 }

@@ -26,6 +26,7 @@ public class UserDAO {
      */
 
     @Id
+    @Column(updatable = false, nullable = false)
     private UUID id;
     private String userName;
     private String password;
