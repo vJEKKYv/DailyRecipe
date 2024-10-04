@@ -15,21 +15,6 @@ public class SaveRecipeDAOBean {
         this.recipeDAORepository = recipeDAORepository;
     }
 
-    public UUID exec(SaveRecipeRequestDTO saveRecipeRequestDTO){
-        RecipeDAO recipeDAO = null;
-        UUID id = UUID.randomUUID();
-        RecipeDAO.builder().recipeId(id)
-                .userId(saveRecipeRequestDTO.getUserId())
-                .thumbnail(saveRecipeRequestDTO.getThumbnail())
-                .title(saveRecipeRequestDTO.getTitle())
-                .description(saveRecipeRequestDTO.getDescription())
-                .ingredient(saveRecipeRequestDTO.getIngredient())
-                .instruction(saveRecipeRequestDTO.getInstruction())
-                .createdAt(saveRecipeRequestDTO.getCreatedAt())
-                .build();
-        recipeDAORepository.save(recipeDAO);
-        return  id;
-    }
     public UUID exec(RecipeDAO recipeDAO){
         return recipeDAORepository.save(recipeDAO).getRecipeId();
     }

@@ -6,5 +6,5 @@ import java.util.UUID;
 
 @Data
 public class DeleteRecipeRequestDTO {
-    private UUID id;
+    private UUID recipeId;
 }

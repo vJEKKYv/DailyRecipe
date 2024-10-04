@@ -5,7 +5,9 @@ import DailyRecipe.DailyRecipe_study.Recipe.bean.small.SaveRecipeDAOBean;
 import DailyRecipe.DailyRecipe_study.Recipe.domain.RecipeDAO;
 import DailyRecipe.DailyRecipe_study.Recipe.domain.dto.UpdateRecipeRequestDTO;
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UpdateRecipeBean {
     private final GetRecipeDAOBean getRecipeDAOBean;
     private final SaveRecipeDAOBean saveRecipeDAOBean;

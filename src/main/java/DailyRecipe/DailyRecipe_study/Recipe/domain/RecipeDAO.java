@@ -27,5 +27,5 @@ public class RecipeDAO {
     private String description;
     private String ingredient;
     private String instruction;
-    private Date createdAt;
+    private String createdAt;
 }

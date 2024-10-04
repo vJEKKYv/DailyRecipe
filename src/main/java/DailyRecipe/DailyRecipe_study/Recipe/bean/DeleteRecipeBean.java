@@ -15,7 +15,7 @@ public class DeleteRecipeBean {
         this.getRecipeDAOBean = getRecipeDAOBean;
     }
     public boolean exec(DeleteRecipeRequestDTO deleteRecipeRequestDTO){
-        if (getRecipeDAOBean.exec(deleteRecipeRequestDTO.getId())==null)    return false;
+        if (getRecipeDAOBean.exec(deleteRecipeRequestDTO.getRecipeId())==null)    return false;
         else    return deleteRecipeDAOBean.exec(deleteRecipeRequestDTO);
     }
 
