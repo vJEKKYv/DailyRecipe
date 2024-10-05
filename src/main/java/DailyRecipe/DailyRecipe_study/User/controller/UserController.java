@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 //할거면 하나로 확실히 지키면서 가기. 왔다갔다 하면 헷갈림. 전체적 통일성 필요
 @RestController
@@ -43,11 +44,11 @@ public class UserController {
 
     @PostMapping(value = "/signup")
     public ResponseEntity<Map<String, Object>> signup(@RequestBody SignupUserRequestDTO signupUserRequestDTO){
-        boolean check = userService.saveUser(signupUserRequestDTO);
+        UUID id = userService.saveUser(signupUserRequestDTO);
         Map<String, Object> requestMap = new HashMap<>();
 
-        requestMap.put("is_success", check);
-        requestMap.put("message", check ? "계정이 성공적으로 생성되었습니다. " : "계정 생성에 실패하였습니다. ");
+        requestMap.put("is_success", id != null);
+        requestMap.put("message", id != null ? "계정이 성공적으로 생성되었습니다. " : "계정 생성에 실패하였습니다. ");
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 

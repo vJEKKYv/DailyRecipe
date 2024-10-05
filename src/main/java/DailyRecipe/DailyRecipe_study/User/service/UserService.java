@@ -10,6 +10,8 @@ import DailyRecipe.DailyRecipe_study.User.domain.dto.TotalUserResponseDTO;
 import DailyRecipe.DailyRecipe_study.User.repository.UserDAORepository;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UserService {
     private final UserDAORepository userDAORepository;
@@ -31,7 +33,7 @@ public class UserService {
     }
 
     //회원가입
-    public boolean saveUser(SignupUserRequestDTO signupUserRequestDTO){
+    public UUID saveUser(SignupUserRequestDTO signupUserRequestDTO){
         return saveUserBean.exec(signupUserRequestDTO);
     }
 

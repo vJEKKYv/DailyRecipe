@@ -8,6 +8,8 @@ import DailyRecipe.DailyRecipe_study.User.domain.dto.SignupUserRequestDTO;
 import DailyRecipe.DailyRecipe_study.User.repository.UserDAORepository;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class SaveUserBean {
     private final GetUserDAOBean getUserDAOBean;
@@ -20,13 +22,12 @@ public class SaveUserBean {
         this.createUserDAOBean = createUserDAOBean;
         this.saveUserDAOBean = saveUserDAOBean;
     }
-    public boolean exec(SignupUserRequestDTO signupUserRequestDTO){
+    public UUID exec(SignupUserRequestDTO signupUserRequestDTO){
         UserDAO userDAO = getUserDAOBean.exec(signupUserRequestDTO.getUserName());
         if (userDAO ==null){
             userDAO = createUserDAOBean.exec(signupUserRequestDTO);
-            saveUserDAOBean.exec(userDAO);
-            return true;
+            return saveUserDAOBean.exec(userDAO);
         }
-        else return false;
+        else return null;
     }
 }
