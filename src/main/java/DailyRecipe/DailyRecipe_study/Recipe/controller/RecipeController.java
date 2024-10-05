@@ -35,12 +35,12 @@ public class RecipeController {
 
     @PutMapping(value = "/recipes")
     public ResponseEntity<Map<String, Object>> updateRecipe(@RequestBody UpdateRecipeRequestDTO updateRecipeRequestDTO){
-        boolean check = recipeService.updateRecipe(updateRecipeRequestDTO);
+        UUID id = recipeService.updateRecipe(updateRecipeRequestDTO);
 
         Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("is_success", check);
-        requestMap.put("message", check ? "레시피 수정에 성공했습니다. " : "레시피 수정에 실패했습니다. ");
-        requestMap.put("Recipe_id", check ? updateRecipeRequestDTO.getRecipeId() : null);
+        requestMap.put("is_success", id != null);
+        requestMap.put("message", id != null ? "레시피 수정에 성공했습니다. " : "레시피 수정에 실패했습니다. ");
+        requestMap.put("Recipe_id", id);
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 

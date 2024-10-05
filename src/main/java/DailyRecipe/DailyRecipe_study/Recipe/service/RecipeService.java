@@ -34,7 +34,7 @@ public class RecipeService {
     }
 
     //레시피 수정
-    public boolean updateRecipe(UpdateRecipeRequestDTO updateRecipeRequestDTO){
+    public UUID updateRecipe(UpdateRecipeRequestDTO updateRecipeRequestDTO){
         return updateRecipeBean.exec(updateRecipeRequestDTO);
     }
 

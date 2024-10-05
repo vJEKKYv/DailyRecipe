@@ -15,11 +15,11 @@ public class SaveRecipeBean {
     private final CreateRecipeDAOBean createRecipeDAOBean;
     private final SaveRecipeDAOBean saveRecipeDAOBean;
 
-    public SaveRecipeBean(SaveRecipeDAOBean saveRecipeDAOBean, CreateRecipeDAOBean createRecipeDAOBean,
-                          CheckUserIdBean checkUserIdBean){
+    public SaveRecipeBean(CheckUserIdBean checkUserIdBean, SaveRecipeDAOBean saveRecipeDAOBean,
+                          CreateRecipeDAOBean createRecipeDAOBean){
+        this.checkUserIdBean = checkUserIdBean;
         this.createRecipeDAOBean = createRecipeDAOBean;
         this.saveRecipeDAOBean = saveRecipeDAOBean;
-        this.checkUserIdBean = checkUserIdBean;
     }
 
     public UUID exec(SaveRecipeRequestDTO saveRecipeRequestDTO){
