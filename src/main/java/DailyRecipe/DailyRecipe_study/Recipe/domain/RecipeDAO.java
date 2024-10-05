@@ -1,13 +1,12 @@
 package DailyRecipe.DailyRecipe_study.Recipe.domain;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.net.URL;
 import java.sql.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -25,7 +24,10 @@ public class RecipeDAO {
     private String thumbnail;
     private String title;
     private String description;
-    private String ingredient;
-    private String instruction;
     private String createdAt;
+
+    @Convert(converter = ListAndStringConverter.class)
+    private List<Map<String, Object>> ingredient;
+    @Convert(converter = ListAndStringConverter.class)
+    private List<Map<String, Object>> instruction;
 }
