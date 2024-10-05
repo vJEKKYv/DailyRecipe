@@ -15,4 +15,5 @@ public class DailyRecipeStudyApplication {
 	//2024-10-03 구현 x 이제 시작 합니다..
 		// 구현 완료. but 재료와 조리법 List<Map<String, Object>> 형식으로 변경 필요
 	//2024-10-05 금일 구현 X. 금일 안에 재료와 조리법 Converter 이용한 구조 변경 구현 예정
+		// Converter 구현 완료, recipe 생성, 수정 시 userId 체크 하도록 변경
 }
