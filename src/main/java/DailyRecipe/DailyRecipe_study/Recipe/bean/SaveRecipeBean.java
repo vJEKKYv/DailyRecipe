@@ -23,7 +23,7 @@ public class SaveRecipeBean {
     }
 
     public UUID exec(SaveRecipeRequestDTO saveRecipeRequestDTO){
-        if (saveRecipeRequestDTO.getUserId() !=checkUserIdBean.exec(saveRecipeRequestDTO.getUserId())){
+        if (checkUserIdBean.exec(saveRecipeRequestDTO.getUserId()) == null){
             return null;
         }
         RecipeDAO recipeDAO = createRecipeDAOBean.exec(saveRecipeRequestDTO);
