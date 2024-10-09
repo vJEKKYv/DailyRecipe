@@ -57,8 +57,8 @@ public class RecipeController {
     }
 
     @GetMapping(value = "/recipes/all")
-    public ResponseEntity<Map<String, Object>> findRecipeAll(){
-        List<RecipeDAO> recipeDAOList = recipeService.findAllRecipe();
+    public ResponseEntity<Map<String, Object>> getRecipeAll(){
+        List<RecipeDAO> recipeDAOList = recipeService.getRecipeAll();
 
         Map<String,Object> requestMap = new HashMap<>();
         requestMap.put("is_success", recipeDAOList!=null);
@@ -67,5 +67,6 @@ public class RecipeController {
 
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
+
 
 }
