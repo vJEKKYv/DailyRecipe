@@ -68,5 +68,16 @@ public class RecipeController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
+    @GetMapping(value = "/recipes/detail")
+    public ResponseEntity<Map<String, Object>> getRecipeById(@RequestParam("recipe_id") UUID id){
+        RecipeDAO recipeDAO = recipeService.getRecipeById(id);
+
+        Map<String,Object> requestMap = new HashMap<>();
+        requestMap.put("is_success", recipeDAO!=null);
+        requestMap.put("message", recipeDAO!=null? "상세 레시피 조회에 성공했습니다. " : "상세 레시피 조회에 실패했습니다. ");
+        requestMap.put("Recipes", recipeDAO);
+
+        return ResponseEntity.status(HttpStatus.OK).body(requestMap);
+    }
 
 }

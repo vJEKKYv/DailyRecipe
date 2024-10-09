@@ -1,10 +1,7 @@
 package DailyRecipe.DailyRecipe_study.Recipe.service;
 
 
-import DailyRecipe.DailyRecipe_study.Recipe.bean.GetRecipeAllBean;
-import DailyRecipe.DailyRecipe_study.Recipe.bean.UpdateRecipeBean;
-import DailyRecipe.DailyRecipe_study.Recipe.bean.DeleteRecipeBean;
-import DailyRecipe.DailyRecipe_study.Recipe.bean.SaveRecipeBean;
+import DailyRecipe.DailyRecipe_study.Recipe.bean.*;
 import DailyRecipe.DailyRecipe_study.Recipe.domain.RecipeDAO;
 import DailyRecipe.DailyRecipe_study.Recipe.domain.dto.UpdateRecipeRequestDTO;
 import DailyRecipe.DailyRecipe_study.Recipe.domain.dto.DeleteRecipeRequestDTO;
@@ -22,16 +19,18 @@ public class RecipeService {
     private final DeleteRecipeBean deleteRecipeBean;
     private final UpdateRecipeBean updateRecipeBean;
     private final GetRecipeAllBean getRecipeAllBean;
+    private final GetRecipeByIdBean getRecipeByIdBean;
 
 
     public RecipeService(RecipeDAORepository recipeDAORepository, SaveRecipeBean saveRecipeBean,
                          DeleteRecipeBean deleteRecipeBean, UpdateRecipeBean updateRecipeBean,
-                         GetRecipeAllBean getRecipeAllBean){
+                         GetRecipeAllBean getRecipeAllBean, GetRecipeByIdBean getRecipeByIdBean){
         this.recipeDAORepository = recipeDAORepository;
         this.saveRecipeBean = saveRecipeBean;
         this.deleteRecipeBean = deleteRecipeBean;
         this.updateRecipeBean = updateRecipeBean;
         this.getRecipeAllBean = getRecipeAllBean;
+        this.getRecipeByIdBean = getRecipeByIdBean;
     }
 
     //레시피 저장
@@ -55,7 +54,7 @@ public class RecipeService {
     }
 
     //ID 조회
-    public RecipeDAO findRecipeById(UUID id){
-        return null;
+    public RecipeDAO getRecipeById(UUID id){
+        return getRecipeByIdBean.exec(id);
     }
 }
