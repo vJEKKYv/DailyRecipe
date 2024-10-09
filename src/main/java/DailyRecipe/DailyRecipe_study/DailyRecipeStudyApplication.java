@@ -19,4 +19,5 @@ public class DailyRecipeStudyApplication {
 	//2024-10-06 아직 구현 x. 전체 조회 구현 예정.
 	//2024-10-07 오늘 구현 x. 어제 안 한 구현 내용  api 명세에 따라 하나씩 구현 예정
 	//2024-10-08 오늘도..구현..X... 오늘은 진짜 합니다..
+	//2024-10-09 FindRecipeAll 구현. UserId 조회 구현 중...
 }
