@@ -1,15 +1,18 @@
 package DailyRecipe.DailyRecipe_study.Recipe.service;
 
 
+import DailyRecipe.DailyRecipe_study.Recipe.bean.FindRecipeAllBean;
 import DailyRecipe.DailyRecipe_study.Recipe.bean.UpdateRecipeBean;
 import DailyRecipe.DailyRecipe_study.Recipe.bean.DeleteRecipeBean;
 import DailyRecipe.DailyRecipe_study.Recipe.bean.SaveRecipeBean;
+import DailyRecipe.DailyRecipe_study.Recipe.domain.RecipeDAO;
 import DailyRecipe.DailyRecipe_study.Recipe.domain.dto.UpdateRecipeRequestDTO;
 import DailyRecipe.DailyRecipe_study.Recipe.domain.dto.DeleteRecipeRequestDTO;
 import DailyRecipe.DailyRecipe_study.Recipe.domain.dto.SaveRecipeRequestDTO;
 import DailyRecipe.DailyRecipe_study.Recipe.repository.RecipeDAORepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -18,14 +21,17 @@ public class RecipeService {
     private final SaveRecipeBean saveRecipeBean;
     private final DeleteRecipeBean deleteRecipeBean;
     private final UpdateRecipeBean updateRecipeBean;
+    private final FindRecipeAllBean findRecipeAllBean;
 
 
     public RecipeService(RecipeDAORepository recipeDAORepository, SaveRecipeBean saveRecipeBean,
-                         DeleteRecipeBean deleteRecipeBean, UpdateRecipeBean updateRecipeBean){
+                         DeleteRecipeBean deleteRecipeBean, UpdateRecipeBean updateRecipeBean,
+                         FindRecipeAllBean findRecipeAllBean){
         this.recipeDAORepository = recipeDAORepository;
         this.saveRecipeBean = saveRecipeBean;
         this.deleteRecipeBean = deleteRecipeBean;
         this.updateRecipeBean = updateRecipeBean;
+        this.findRecipeAllBean = findRecipeAllBean;
     }
 
     //레시피 저장
@@ -41,5 +47,10 @@ public class RecipeService {
     //레시피 삭제
     public boolean deleteRecipe(DeleteRecipeRequestDTO deleteRecipeRequestDTO){
         return deleteRecipeBean.exec(deleteRecipeRequestDTO);
+    }
+
+    //전체 조회
+    public List<RecipeDAO> findAllRecipe(){
+        return  findRecipeAllBean.exec();
     }
 }
