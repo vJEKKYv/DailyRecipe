@@ -68,20 +68,20 @@ public class RecipeController {
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
-    @GetMapping(value = "/recipes/detail")
-    public ResponseEntity<Map<String, Object>> getRecipeById(@RequestParam("recipe_id") UUID id){
-        RecipeDAO recipeDAO = recipeService.getRecipeById(id);
+    @GetMapping(value = "/recipes/{user_id}/all")
+    public ResponseEntity<Map<String, Object>> getRecipeByUserId(@PathVariable("user_id") UUID user_id){
+        List<RecipeDAO> recipeDAOList = recipeService.getRecipeByUserId(user_id);
 
         Map<String,Object> requestMap = new HashMap<>();
-        requestMap.put("is_success", recipeDAO!=null);
-        requestMap.put("message", recipeDAO!=null? "상세 레시피 조회에 성공했습니다. " : "상세 레시피 조회에 실패했습니다. ");
-        requestMap.put("Recipes", recipeDAO);
+        requestMap.put("is_success", !recipeDAOList.isEmpty());
+        requestMap.put("message", !recipeDAOList.isEmpty() ? "상세 레시피 조회에 성공했습니다. " : "상세 레시피 조회에 실패했습니다. ");
+        requestMap.put("Recipes", recipeDAOList);
 
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
 
     @GetMapping(value = "/recipes/detail/{recipe_id}")
-    public ResponseEntity<Map<String, Object>> getRecipeByUserId(@PathVariable UUID recipe_id){
+    public ResponseEntity<Map<String, Object>> getRecipeById(@PathVariable("recipe_id") UUID recipe_id){
         RecipeDAO recipeDAO = recipeService.getRecipeById(recipe_id);
 
         Map<String,Object> requestMap = new HashMap<>();

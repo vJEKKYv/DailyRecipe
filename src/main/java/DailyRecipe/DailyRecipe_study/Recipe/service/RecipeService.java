@@ -20,17 +20,20 @@ public class RecipeService {
     private final UpdateRecipeBean updateRecipeBean;
     private final GetRecipeAllBean getRecipeAllBean;
     private final GetRecipeByIdBean getRecipeByIdBean;
+    private final GetRecipeByUserIdBean getRecipeByUserIdBean;
 
 
     public RecipeService(RecipeDAORepository recipeDAORepository, SaveRecipeBean saveRecipeBean,
                          DeleteRecipeBean deleteRecipeBean, UpdateRecipeBean updateRecipeBean,
-                         GetRecipeAllBean getRecipeAllBean, GetRecipeByIdBean getRecipeByIdBean){
+                         GetRecipeAllBean getRecipeAllBean, GetRecipeByIdBean getRecipeByIdBean,
+                         GetRecipeByUserIdBean getRecipeByUserIdBean){
         this.recipeDAORepository = recipeDAORepository;
         this.saveRecipeBean = saveRecipeBean;
         this.deleteRecipeBean = deleteRecipeBean;
         this.updateRecipeBean = updateRecipeBean;
         this.getRecipeAllBean = getRecipeAllBean;
         this.getRecipeByIdBean = getRecipeByIdBean;
+        this.getRecipeByUserIdBean = getRecipeByUserIdBean;
     }
 
     //레시피 저장
@@ -56,5 +59,10 @@ public class RecipeService {
     //ID 조회
     public RecipeDAO getRecipeById(UUID id){
         return getRecipeByIdBean.exec(id);
+    }
+
+    //UserId 조회
+    public List<RecipeDAO> getRecipeByUserId(UUID userId){
+        return getRecipeByUserIdBean.exec(userId);
     }
 }
