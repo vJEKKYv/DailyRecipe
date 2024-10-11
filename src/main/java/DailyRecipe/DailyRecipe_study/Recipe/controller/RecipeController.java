@@ -61,9 +61,9 @@ public class RecipeController {
         List<RecipeDAO> recipeDAOList = recipeService.getRecipeAll();
 
         Map<String,Object> requestMap = new HashMap<>();
-        requestMap.put("is_success", recipeDAOList!=null);
-        requestMap.put("message", recipeDAOList!=null? "전체 레시피 조회에 성공했습니다. " : "전체 레시피 조회에 실패했습니다. ");
-        requestMap.put("Recipes", recipeDAOList);
+        requestMap.put("is_success", !recipeDAOList.isEmpty());
+        requestMap.put("message", !recipeDAOList.isEmpty()? "전체 레시피 조회에 성공했습니다. " : "전체 레시피 조회에 실패했습니다. ");
+        requestMap.put("Recipes", !recipeDAOList.isEmpty());
 
         return ResponseEntity.status(HttpStatus.OK).body(requestMap);
     }
