@@ -4,7 +4,6 @@ import DailyRecipe.DailyRecipe_study.Recipe.domain.ListAndStringConverter;
 import jakarta.persistence.Convert;
 import lombok.Data;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;

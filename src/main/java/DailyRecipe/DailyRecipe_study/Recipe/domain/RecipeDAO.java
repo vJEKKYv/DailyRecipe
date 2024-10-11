@@ -4,8 +4,6 @@ package DailyRecipe.DailyRecipe_study.Recipe.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.net.URL;
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;

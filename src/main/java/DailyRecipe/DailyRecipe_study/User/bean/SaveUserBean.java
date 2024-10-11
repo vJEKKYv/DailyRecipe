@@ -5,7 +5,6 @@ import DailyRecipe.DailyRecipe_study.User.bean.small.GetUserDAOBean;
 import DailyRecipe.DailyRecipe_study.User.bean.small.SaveUserDAOBean;
 import DailyRecipe.DailyRecipe_study.User.domain.UserDAO;
 import DailyRecipe.DailyRecipe_study.User.domain.dto.SignupUserRequestDTO;
-import DailyRecipe.DailyRecipe_study.User.repository.UserDAORepository;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
