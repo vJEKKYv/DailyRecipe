@@ -25,10 +25,13 @@ public class UpdateRecipeBean {
     @Transactional
     public UUID exec(UpdateRecipeRequestDTO updateRecipeRequestDTO){
         RecipeDAO recipeDAO = getRecipeDAOBean.exec(updateRecipeRequestDTO.getRecipeId());
+
         if (recipeDAO == null)  return null;
+
         else if (checkUserIdBean.exec(updateRecipeRequestDTO.getUserId()) == null) {
             return  null;
-        } else {
+        }
+        else {
             recipeDAO.setUserId(updateRecipeRequestDTO.getUserId());
             recipeDAO.setThumbnail(updateRecipeRequestDTO.getThumbnail());
             recipeDAO.setTitle(updateRecipeRequestDTO.getTitle());

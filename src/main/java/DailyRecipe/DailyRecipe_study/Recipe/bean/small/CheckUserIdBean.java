@@ -13,6 +13,7 @@ public class CheckUserIdBean {
     public CheckUserIdBean(UserDAORepository userDAORepository){
         this.userDAORepository = userDAORepository;
     }
+
     public UUID exec(UUID userId){
         UserDAO userDAOForCheck = userDAORepository.findById(userId).orElse(null);
         if (userDAOForCheck == null)    return null;
